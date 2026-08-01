@@ -60,7 +60,7 @@ return {
 				html = { "prettier" },
 				lua = { "stylua" },
 				java = { "google_java_format" },
-				json = { "prettier" },
+				json = { "fixjson" },
 				sh = { "shfmt" },
 			}
 			vim.keymap.set("n", "<leader>gf", function()

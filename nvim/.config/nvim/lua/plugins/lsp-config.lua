@@ -14,14 +14,14 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-        lazy = false,
+		lazy = false,
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			}) -- lua
-			lspconfig.ts_ls.setup({
+			lspconfig.tsserver.setup({
 
 				capabilities = capabilities,
 			}) -- TypeScript/JavaScript
@@ -81,6 +81,9 @@ return {
 
 				capabilities = capabilities,
 			}) -- HTML
+			lspconfig.eslint.setup({
+				capabilities = capabilities,
+			})
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})

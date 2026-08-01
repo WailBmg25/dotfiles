@@ -25,33 +25,49 @@ In the high-stakes world of computing, efficiency and elegance are non-negotiabl
 - **Neovim:** An extensible text editor that enhances coding and editing efficiency.
 - **Rofi:** A versatile application launcher and window switcher for fluid navigation.
 
-## Installation
+## Installation (fresh Arch + HyDE reinstall)
 
-1. **Clone the Repository:**
+1. **Install HyDE first** (base packages, themes, wallpapers, fonts): follow
+   https://github.com/prasanthrangan/hyprdots. This repo only overlays personal
+   config on top of a working HyDE install — it does not install HyDE itself.
 
-   ```bash
-   git clone https://github.com/WailBmg25/dotfiles.git ~/.dotfiles
-   ```
-
-2. **Navigate to the Directory:**
+2. **Clone this repository:**
 
    ```bash
-   cd ~/.dotfiles
+   git clone git@github.com:WailBmg25/dotfiles.git ~/dotfiles
+   cd ~/dotfiles
    ```
 
-3. **Ensure the Setup Script is Executable:**
-
-   ```bash
-   chmod +x setup.sh
-   ```
-
-4. **Run the Setup Script:**
+3. **Run the setup script:**
 
    ```bash
    ./setup.sh
    ```
 
-   This script will install GNU Stow, create the necessary symlinks, and configure all components.
+   This installs GNU Stow (if missing) and symlinks every package here
+   (`~/.config/hypr`, `waybar`, `kitty`, `nvim`, `rofi`, `zsh`, `tmux`, and
+   `~/.local/share/bin`) into place. Existing real files/dirs at those paths
+   will make stow fail with a conflict — move them aside first if this isn't
+   a fresh HyDE install.
+
+4. **Log out / restart Hyprland** so `exec-once` entries (waybar, cliphist
+   watchers, etc.) pick up the linked configs.
+
+Not covered by this repo (regenerate via HyDE's own tools after install):
+theme/wallpaper selection (`~/.config/hyde/hyde.conf`), installed packages.
+
+## Packages in this repo
+
+| Package | Links to |
+|---|---|
+| `hypr` | `~/.config/hypr` |
+| `waybar` | `~/.config/waybar` |
+| `kitty` | `~/.config/kitty` |
+| `nvim` | `~/.config/nvim` |
+| `rofi` | `~/.config/rofi` |
+| `tmux` | `~/.tmux.conf` |
+| `zsh` | `~/.zshrc` |
+| `local-bin` | `~/.local/share/bin` (HyDE helper scripts, incl. personal fixes to `cliphist.sh` and `systemupdate.sh`) |
 
 ## Conclusion
 

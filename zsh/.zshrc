@@ -120,24 +120,39 @@ source $ZSH/oh-my-zsh.sh
 export QT_QPA_PLATFORM=wayland
 export GDK_BACKEND=wayland
 export PATH=$PATH:/opt/bun/bin
-export ANDROID_SDK_ROOT='/home/wailbmg/AndroidSdk'
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools/
-export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin/
-export PATH=$PATH:$ANDROID_SDK_ROOT/emulator/
-export PATH=$PATH:$ANDROID_SDK_ROOT/tools/
-export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable 
+export ANDROID_HOME=$HOME/AndroidSdk
+export ANDROID_SDK_ROOT=$ANDROID_HOME
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/wailbmg/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/wailbmg/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/wailbmg/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/wailbmg/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+export PATH=$ANDROID_HOME/emulator:$PATH
+
+
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+alias ssh='TERM=xterm ssh'
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+. "$HOME/.local/bin/env"
+
+# uv environments
+alias base="source ~/.envs/base/bin/activate"
+alias envbook="source ~/.envs/booklook/bin/activate"
+alias envdl="source ~/.envs/deeplearning/bin/activate"
+alias envrag="source ~/.envs/mini-rag-app/bin/activate"
+export UV_PROJECT_ENVIRONMENT="$HOME/.envs/$UV_ENV_NAME"
+# Python Environment Manager
+export PATH="$HOME/.local/bin:$PATH"
+
+# Python Environment Manager (pi command)
+[ -f ~/.local/bin/pi ] && source ~/.local/bin/pi
+
+# Load completions
+fpath=($HOME/.local/share/zsh/completions $fpath)
+autoload -Uz compinit && compinit
+
+# Named directories (shortcuts)
+hash -d py="$HOME/Documents/Projects/PyProjects"
+hash -d envs="$HOME/.envs"
+hash -d proj="$HOME/Documents/Projects"
+export PATH="$PATH:$HOME/flutter/bin"
