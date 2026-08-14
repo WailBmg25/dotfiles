@@ -156,3 +156,6 @@ hash -d py="$HOME/Documents/Projects/PyProjects"
 hash -d envs="$HOME/.envs"
 hash -d proj="$HOME/Documents/Projects"
 export PATH="$PATH:$HOME/flutter/bin"
+
+# kimi-code
+export PATH="/home/wailbmg/.kimi-code/bin:$PATH"
