@@ -17,7 +17,7 @@ cp "${confDir}/qt5ct/colors.conf" "${confDir}/qt6ct/colors.conf"
 a_ws=$(hyprctl -j activeworkspace | jq '.id')
 dpid=$(hyprctl -j clients | jq --arg wid "$a_ws" '.[] | select(.workspace.id == ($wid | tonumber)) | select(.class == "org.kde.dolphin") | .pid')
 if [ ! -z ${dpid} ] ; then
-    hyprctl dispatch closewindow pid:${dpid}
-    hyprctl dispatch exec dolphin &
+    hyprctl eval "hl.dispatch(hl.dsp.window.close({window='pid:${dpid}'}))"
+    hyprctl eval "hl.dispatch(hl.dsp.exec_cmd('dolphin'))" &
 fi
 
