@@ -135,3 +135,12 @@ for _, ns in ipairs({
 }) do
     hl.layer_rule({ match = { namespace = ns }, blur = true })
 end
+
+
+-- Ignore maximize requests from apps (they hide sibling tiled windows); from the upstream example config
+
+hl.window_rule({
+    name           = "suppress-maximize-events",
+    match          = { class = ".*" },
+    suppress_event = "maximize",
+})
